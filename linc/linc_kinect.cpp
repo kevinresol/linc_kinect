@@ -6,8 +6,6 @@ namespace linc {
 
     namespace kinect {
 
-        }
-
     } //kinect namespace
 
 } //linc
