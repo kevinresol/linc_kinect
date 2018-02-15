@@ -1,0 +1,29 @@
+<xml>
+
+    <!-- For a more in depth guide: https://github.com/snowkit/hxcpp-guide -->
+
+    <files id='haxe'>
+
+        <!-- add files and flags to the haxe c++ build -->
+
+        <compilerflag value='-I${LINC_KINECT_PATH}/linc/'/>
+        <compilerflag value='-DKINECT_EXAMPLE_DEFINE_FOR_THE_CPP_CODE'/>
+
+        <file name='${LINC_KINECT_PATH}linc/linc_kinect.cpp' />
+        
+        <section if="windows">
+            <compilerflag value='-I${KINECTSDK20_DIR}/inc'/>
+        </section>
+    </files>
+
+    <target id="haxe">
+
+        <!-- add linker flags to the haxe build output -->
+        <section if="windows">
+            <!-- <vflag name="-libpath" value='${KINECTSDK20_DIR}/Lib/x86/'/>             -->
+            <!-- <flag value='-L${KINECTSDK20_DIR}/Lib/x64'/> -->
+            <lib name='${KINECTSDK20_DIR}/Lib/x86/kinect20.lib'/>
+        </section>
+    </target>
+
+</xml>
