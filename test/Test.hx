@@ -21,7 +21,7 @@ class Test {
                 desc.release();
                 
                 var buffer = frame.accessUnderlyingBuffer();
-                trace(buffer.size);
+                trace(buffer.length);
                 
                 frame.release();
                 count++;

@@ -23,7 +23,9 @@ class DepthFrame extends cpp.Finalizable {
 		var size:UInt32 = 0;
 		var buf:Star<UInt16> = untyped __cpp__('nullptr');
 		untyped __cpp__('{0}->AccessUnderlyingBuffer(&{1}, &{2});', ref, size, buf);
-		return new UInt16Buffer(size, cast buf);
+		var arr = new Array<UInt16>();
+		NativeArray.setUnmanagedData(arr, cast buf, size);
+		return arr;
 	}
 	
 	public function getDepthMinReliableDistance():Int {
