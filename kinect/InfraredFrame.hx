@@ -1,15 +1,14 @@
 package kinect;
 
 import cpp.*;
-import kinect.Api.*;
 import kinect.IFrameDescription;
 
 @:allow(kinect)
-class BodyIndexFrame extends cpp.Finalizable {
+class InfraredFrame extends cpp.Finalizable {
 	
-	var ref:IBodyIndexFrame;
+	var ref:IInfraredFrame;
 	
-	function new(ref:IBodyIndexFrame) {
+	function new(ref:IInfraredFrame) {
 		super();
 		this.ref = ref;
 	}
@@ -22,9 +21,9 @@ class BodyIndexFrame extends cpp.Finalizable {
 	
 	public function accessUnderlyingBuffer() {
 		var size:UInt32 = 0;
-		var buf:Star<UInt8> = untyped __cpp__('nullptr');
+		var buf:Star<UInt16> = untyped __cpp__('nullptr');
 		untyped __cpp__('{0}->AccessUnderlyingBuffer(&{1}, &{2});', ref, size, buf);
-		var arr = new Array<UInt8>();
+		var arr = new Array<UInt16>();
 		NativeArray.setUnmanagedData(arr, cast buf, size);
 		return arr;
 	}

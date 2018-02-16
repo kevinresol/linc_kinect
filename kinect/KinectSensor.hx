@@ -5,6 +5,7 @@ import kinect.IDepthFrameSource;
 import kinect.IBodyFrameSource;
 import kinect.IBodyIndexFrameSource;
 import kinect.IColorFrameSource;
+import kinect.IInfraredFrameSource;
 import kinect.ICoordinateMapper;
 
 // use a wrapper class to clean up the native kinect handle when GCed
@@ -22,6 +23,12 @@ class KinectSensor extends Finalizable {
 	
 	public inline function open() {
 		ref.Open();
+	}
+	
+	public function getInfraredFrameSource() {
+		var p:Star<_IInfraredFrameSource> = untyped __cpp__('nullptr');
+		untyped __cpp__('{0}->get_InfraredFrameSource(&{1});', ref, p);
+		return new InfraredFrameSource(cast p);
 	}
 	
 	public function getDepthFrameSource() {
