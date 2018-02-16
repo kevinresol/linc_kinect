@@ -28,6 +28,41 @@ class Body extends cpp.Finalizable {
 		return [for(i in 0...JointType.Count) ((untyped __cpp__('p[{0}]', i)):Joint)];
 	}
 	
+	public function getHandRightState() {
+		var v:HandState = Unknown;
+		var ret:Int = untyped __cpp__('{0}->get_HandRightState(&{1});', ref, v);
+		if(ret != S_OK) throw ret;
+		return v;
+	}
+	
+	public function getHandRightConfidence() {
+		var v:TrackingConfidence = Low;
+		var ret:Int = untyped __cpp__('{0}->get_HandRightConfidence(&{1});', ref, v);
+		if(ret != S_OK) throw ret;
+		return v;
+	}
+	
+	public function getHandLeftState() {
+		var v:HandState = Unknown;
+		var ret:Int = untyped __cpp__('{0}->get_HandLeftState(&{1});', ref, v);
+		if(ret != S_OK) throw ret;
+		return v;
+	}
+	
+	public function getHandLeftConfidence() {
+		var v:TrackingConfidence = Low;
+		var ret:Int = untyped __cpp__('{0}->get_HandLeftConfidence(&{1});', ref, v);
+		if(ret != S_OK) throw ret;
+		return v;
+	}
+	
+	public function getEngaged() {
+		var v:DetectionResult = Unknown;
+		var ret:Int = untyped __cpp__('{0}->get_Engaged(&{1});', ref, v);
+		if(ret != S_OK) throw ret;
+		return v;
+	}
+	
 	public function release() {
 		ref.Release();
 		ref = null;

@@ -2,6 +2,7 @@ package kinect;
 
 @:include('linc_kinect.h')
 @:native('CameraSpacePoint')
+@:structAccess
 extern class _CameraSpacePoint {
 	@:native('X')
 	var x:Float;
