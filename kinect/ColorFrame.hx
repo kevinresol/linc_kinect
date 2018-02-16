@@ -42,8 +42,10 @@ class ColorFrame extends cpp.Finalizable {
 	}
 	
 	public function release() {
-		ref.Release();
-		ref = null;
+		if(ref != null) {
+			ref.Release();
+			ref = null;
+		}
 	}
 	
 	override function finalize() {

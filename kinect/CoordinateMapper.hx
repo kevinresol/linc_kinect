@@ -21,10 +21,19 @@ class CoordinateMapper extends cpp.Finalizable {
 		return output;
 	}
 	
+	public function mapCameraPointToColorSpace(cameraPoint:CameraSpacePoint):ColorSpacePoint {
+		untyped __cpp__('ColorSpacePoint p');
+		var ret:Int = untyped __cpp__('{0}->MapCameraPointToColorSpace({1}, &p)', ref, cameraPoint);
+		if(ret != S_OK) throw ret;
+		return untyped __cpp__('p');
+	}
+	
 	
 	public function release() {
-		ref.Release();
-		ref = null;
+		if(ref != null) {
+			ref.Release();
+			ref = null;
+		}
 	}
 	
 	override function finalize() {

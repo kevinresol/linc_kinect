@@ -5,6 +5,7 @@ import kinect.IDepthFrameSource;
 import kinect.IBodyFrameSource;
 import kinect.IBodyIndexFrameSource;
 import kinect.IColorFrameSource;
+import kinect.ICoordinateMapper;
 
 // use a wrapper class to clean up the native kinect handle when GCed
 class KinectSensor extends Finalizable {
@@ -48,14 +49,16 @@ class KinectSensor extends Finalizable {
 	}
 	
 	public function getCoordinateMapper() {
-		var p:Star<_IBodyFrameSource> = untyped __cpp__('nullptr');
+		var p:Star<_ICoordinateMapper> = untyped __cpp__('nullptr');
 		untyped __cpp__('{0}->get_CoordinateMapper(&{1});', ref, p);
 		return new CoordinateMapper(cast p);
 	}
 	
 	public function release() {
-		ref.Release();
-		ref = null;
+		if(ref != null) {
+			ref.Release();
+			ref = null;
+		}
 	}
 	
 	override function finalize() {

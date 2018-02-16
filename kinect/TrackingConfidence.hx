@@ -1,5 +1,6 @@
 package kinect;
 
+@:include('linc_kinect.h')
 @:unreflective
 @:native('TrackingConfidence')
 extern class TrackingConfidenceNative {}

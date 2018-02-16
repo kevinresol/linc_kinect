@@ -14,20 +14,39 @@ class BodyFrame extends cpp.Finalizable {
 		this.ref = ref;
 	}
 	
-	public function getAndRefreshBodyData(capacity:Int) {
+	public function getAndRefreshBodyData(capacity:Int, ?output:Array<Body>) {
+		if(output != null && output.length < capacity) capacity = output.length;
+		
 		var bodies:Star<Star<_IBody>> = untyped __cpp__('new IBody*[{0}]', capacity);
-		for(i in 0...capacity) untyped __cpp__('{0}[{1}] = nullptr', bodies, i);
+		
+		if(output == null)
+			for(i in 0...capacity) untyped __cpp__('{0}[{1}] = nullptr', bodies, i);
+		else
+			for(i in 0...capacity) untyped __cpp__('{0}[{1}] = {2}', bodies, i, output[i].ref);
+			
 		var ret:Int = untyped __cpp__('{0}->GetAndRefreshBodyData({1}, {2})', ref, capacity, bodies);
 		if(ret != S_OK) throw ret;
-		var arr = [for(i in 0...capacity) new Body(untyped __cpp__('{0}[{1}]', bodies, i))];
-		untyped __cpp__('delete {0}', bodies);
-		return arr;
+		
+		if(output == null)
+			output = [];
+			
+		for(i in 0...capacity)
+			if(output[i] != null)
+				output[i].ref = untyped __cpp__('{0}[{1}]', bodies, i);
+			else
+				output[i] = new Body(untyped __cpp__('{0}[{1}]', bodies, i));
+		
+		untyped __cpp__('delete[] {0}', bodies);
+		
+		return output;
 	}
 	
 	
 	public function release() {
-		ref.Release();
-		ref = null;
+		if(ref != null) {
+			ref.Release();
+			ref = null;
+		}
 	}
 	
 	override function finalize() {
