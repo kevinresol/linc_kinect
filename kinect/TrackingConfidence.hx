@@ -5,7 +5,6 @@ package kinect;
 @:native('TrackingConfidence')
 extern class TrackingConfidenceNative {}
 
-
 @:unreflective
 @:enum
 extern abstract TrackingConfidence(TrackingConfidenceNative) {

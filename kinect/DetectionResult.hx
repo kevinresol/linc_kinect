@@ -5,7 +5,6 @@ package kinect;
 @:native('DetectionResult')
 extern class DetectionResultNative {}
 
-
 @:unreflective
 @:enum
 extern abstract DetectionResult(DetectionResultNative) {

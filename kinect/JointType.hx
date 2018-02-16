@@ -1,30 +1,67 @@
 package kinect;
 
-@:enum abstract JointType(Int) to Int {
-	var SpineBase = 0;
-    var SpineMid = 1;
-    var Neck = 2;
-    var Head = 3;
-    var ShoulderLeft = 4;
-    var ElbowLeft = 5;
-    var WristLeft = 6;
-    var HandLeft = 7;
-    var ShoulderRight = 8;
-    var ElbowRight = 9;
-    var WristRight = 10;
-    var HandRight = 11;
-    var HipLeft = 12;
-    var KneeLeft = 13;
-    var AnkleLeft = 14;
-    var FootLeft = 15;
-    var HipRight = 16;
-    var KneeRight = 17;
-    var AnkleRight = 18;
-    var FootRight = 19;
-    var SpineShoulder = 20;
-    var HandTipLeft = 21;
-    var ThumbLeft = 22;
-    var HandTipRight = 23;
-    var ThumbRight = 24;
-    var Count = 25;
+@:include('linc_kinect.h')
+@:unreflective
+@:native('JointType')
+extern class JointTypeNative {}
+
+@:unreflective
+@:enum
+extern abstract JointType(JointTypeNative) {
+	@:native('JointType_SpineBase')
+	var SpineBase;
+	@:native('JointType_SpineMid')
+	var SpineMid;
+	@:native('JointType_Neck')
+	var Neck;
+	@:native('JointType_Head')
+	var Head;
+	@:native('JointType_ShoulderLeft')
+	var ShoulderLeft;
+	@:native('JointType_ElbowLeft')
+	var ElbowLeft;
+	@:native('JointType_WristLeft')
+	var WristLeft;
+	@:native('JointType_HandLeft')
+	var HandLeft;
+	@:native('JointType_ShoulderRight')
+	var ShoulderRight;
+	@:native('JointType_ElbowRight')
+	var ElbowRight;
+	@:native('JointType_WristRight')
+	var WristRight;
+	@:native('JointType_HandRight')
+	var HandRight;
+	@:native('JointType_HipLeft')
+	var HipLeft;
+	@:native('JointType_KneeLeft')
+	var KneeLeft;
+	@:native('JointType_AnkleLeft')
+	var AnkleLeft;
+	@:native('JointType_FootLeft')
+	var FootLeft;
+	@:native('JointType_HipRight')
+	var HipRight;
+	@:native('JointType_KneeRight')
+	var KneeRight;
+	@:native('JointType_AnkleRight')
+	var AnkleRight;
+	@:native('JointType_FootRight')
+	var FootRight;
+	@:native('JointType_SpineShoulder')
+	var SpineShoulder;
+	@:native('JointType_HandTipLeft')
+	var HandTipLeft;
+	@:native('JointType_ThumbLeft')
+	var ThumbLeft;
+	@:native('JointType_HandTipRight')
+	var HandTipRight;
+	@:native('JointType_ThumbRight')
+	var ThumbRight;
+	@:native('JointType_Count')
+	var Count;
+	
+	@:to
+	inline function toInt():Int
+		return cast this;
 }

@@ -18,13 +18,7 @@ class ColorFrameSource extends cpp.Finalizable {
 		untyped __cpp__('{0}->OpenReader(&{1});', ref, p);
 		return new ColorFrameReader(cast p);
 	}
-	
-	public function getColorCount():Int {
-		var v:Int = 0;
-		untyped __cpp__('{0}->get_ColorCount(&{1});', ref, v);
-		return v;
-	}
-	
+		
 	public function release() {
 		if(ref != null) {
 			ref.Release();

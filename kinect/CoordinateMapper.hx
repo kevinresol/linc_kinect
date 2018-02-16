@@ -16,7 +16,7 @@ class CoordinateMapper extends cpp.Finalizable {
 	
 	public function mapColorFrameToDepthSpace(depthFrameData:Array<UInt16>, ?output:DepthSpacePointBuffer) {
 		if(output == null) output = DepthSpacePointBuffer.alloc(1920 * 1080); // TODO: don't hardcode the dimension?
-		var ret:Int = untyped __cpp__('{0}->MapColorFrameToDepthSpace({1}, {2}, {3}, {4})', ref, depthFrameData.length, cast NativeArray.address(depthFrameData, 0).ref, output.size, output.ref);
+		var ret:Int = untyped __cpp__('{0}->MapColorFrameToDepthSpace({1}, {2}, {3}, {4})', ref, depthFrameData.length, cast NativeArray.address(depthFrameData, 0), output.size, output.ref);
 		if(ret != S_OK) throw ret;
 		return output;
 	}
@@ -27,7 +27,6 @@ class CoordinateMapper extends cpp.Finalizable {
 		if(ret != S_OK) throw ret;
 		return untyped __cpp__('p');
 	}
-	
 	
 	public function release() {
 		if(ref != null) {

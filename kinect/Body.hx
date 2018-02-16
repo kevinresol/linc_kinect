@@ -25,7 +25,7 @@ class Body extends cpp.Finalizable {
 		untyped __cpp__('Joint p[{0}]', JointType.Count);
 		var ret:Int = untyped __cpp__('{0}->GetJoints({1}, p);', ref, JointType.Count);
 		if(ret != S_OK) throw ret;
-		return [for(i in 0...JointType.Count) ((untyped __cpp__('p[{0}]', i)):Joint)];
+		return [for(i in 0...JointType.Count.toInt()) ((untyped __cpp__('p[{0}]', i)):Joint)];
 	}
 	
 	public function getHandRightState() {
